@@ -1,10 +1,12 @@
 import copy
 import json
+import os
 import time
 import win32api
 import win32com.client
 import win32con
 import win32gui
+import win32process
 
 from datetime import datetime
 from http.server import BaseHTTPRequestHandler, HTTPServer
@@ -287,17 +289,21 @@ class KickingManager(object):
     @classmethod
     def send(cls):
         """Send command to d3 to start macro"""
-        #cls.d3_hwnd = win32gui.FindWindow(None,'Diablo III')
+        cls.d3_hwnd = win32gui.FindWindow(None,'Diablo III')
+        print(cls.d3_hwnd)
+        if cls.d3_hwnd:
+            _,pid = win32process.GetWindowThreadProcessId(cls.d3_hwnd)
+            os.kill(pid,9)
         #print(cls.d3_hwnd)
-        cls.shell = win32com.client.Dispatch("WScript.Shell")
-        if cls.shell.AppActivate('Diablo III'):
+        #cls.shell = win32com.client.Dispatch("WScript.Shell")
+        #if cls.shell.AppActivate('Diablo III'):
             #win32gui.SetForegroundWindow(cls.d3_hwnd)
             #win32api.keybd_event(0x32, 0,0,0) # 2 key
             #time.sleep(.01)
             #win32api.keybd_event(0x32,0 ,win32con.KEYEVENTF_KEYUP ,0)
-            win32api.keybd_event(VK_CODE['F9'], 0,0,0) # F9 key
-            time.sleep(.01)
-            win32api.keybd_event(VK_CODE['F9'],0 ,win32con.KEYEVENTF_KEYUP ,0)
+            #win32api.keybd_event(VK_CODE['F9'], 0,0,0) # F9 key
+            #time.sleep(.01)
+            #win32api.keybd_event(VK_CODE['F9'],0 ,win32con.KEYEVENTF_KEYUP ,0)
             #cls.shell.SendKeys("{F9}",0)
         return
 
