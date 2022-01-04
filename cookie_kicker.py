@@ -293,7 +293,8 @@ class KickingManager(object):
         print(cls.d3_hwnd)
         if cls.d3_hwnd:
             _,pid = win32process.GetWindowThreadProcessId(cls.d3_hwnd)
-            os.kill(pid,9)
+            #os.kill(pid,9)
+            os.system("taskkill /F /pid %s" %(pid))
         #print(cls.d3_hwnd)
         #cls.shell = win32com.client.Dispatch("WScript.Shell")
         #if cls.shell.AppActivate('Diablo III'):
