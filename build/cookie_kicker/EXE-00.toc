@@ -42,7 +42,7 @@
  [],
  False,
  False,
- 1641337461,
+ 1641682234,
  [('run.exe',
    'c:\\users\\nico\\appdata\\local\\programs\\python\\python37\\lib\\site-packages\\PyInstaller\\bootloader\\Windows-64bit\\run.exe',
    'EXECUTABLE')])
