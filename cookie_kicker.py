@@ -262,11 +262,13 @@ class handler(BaseHTTPRequestHandler):
         self.wfile.write(bytes(message, "utf8"))
 
 def main():
-    try:
-        with HTTPServer(('', 8000), handler) as server:
-            server.serve_forever()
-    except Exception as e:
-        print(e)
+    while True:
+        print('Starting')
+        try:
+            with HTTPServer(('0.0.0.0', 8000), handler) as server:
+                server.serve_forever()
+        except Exception as e:
+            print(e)
 
 if __name__ == '__main__':
     main()
