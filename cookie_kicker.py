@@ -9,7 +9,7 @@ import win32gui
 import win32process
 
 from datetime import datetime
-from http.server import BaseHTTPRequestHandler, HTTPServer
+from http.server import BaseHTTPRequestHandler, HTTPServer, ThreadingHTTPServer
 from threading import RLock
 
 index = """
@@ -265,7 +265,7 @@ def main():
     while True:
         print('Starting')
         try:
-            with HTTPServer(('0.0.0.0', 8000), handler) as server:
+            with ThreadingHTTPServer(('0.0.0.0', 8000), handler) as server:
                 server.serve_forever()
         except Exception as e:
             print(e)
